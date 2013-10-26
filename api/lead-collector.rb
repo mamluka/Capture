@@ -1,5 +1,6 @@
 require 'grape'
 require 'rack/cors'
+require 'json'
 
 class LeadCollector < Grape::API
 
@@ -13,8 +14,8 @@ class LeadCollector < Grape::API
   format :json
 
   post :lead do
-    File.open('leads.txt', 'a') { |f| f.puts params[:email] }
-    'OK'
+    File.open('leads.txt', 'a') { |f| f.puts JSON.pretty_generate(params) }
+    redirect params[:redirect], permanent: true
   end
 
   options :lead do

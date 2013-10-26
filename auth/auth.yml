@@ -1,0 +1,9 @@
+:facebook:
+  :key: '657746637591038'
+  :secret: '3714e8095ac2885f7c5d106250e08081'
+
+:google_oauth2:
+  :key: '123'
+  :secret: '123'
+
+:cookie_secret: '12345'
