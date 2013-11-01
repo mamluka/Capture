@@ -18,15 +18,14 @@ class LeadCollector < Grape::API
 
   post :lead do
 
-    config = YAML.load(File.read(File.dirname(__FILE__) + '/fields.yml'))
+    config = YAML.load(File.read(File.dirname(__FILE__) + '/sites.yml'))
     domain = params[:domain]
 
     fields = config[domain][:fields]
 
     lead_fields = fields.select { |f| params.has_key?(f) }.map { |f| {field: f, value: params[f]} }
 
-
-    Leads.post_lead("david.mazvovsky@gmail.com",domain, lead_fields, request.ip).deliver
+    Leads.post_lead(config[:email],domain, lead_fields, request.ip).deliver
 
     redirect params[:redirect], permanent: true
   end
