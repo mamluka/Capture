@@ -1,6 +1,9 @@
 require 'grape'
 require 'rack/cors'
 require 'json'
+require 'yaml'
+
+require_relative '../emails/mail_base'
 
 class LeadCollector < Grape::API
 
@@ -14,7 +17,17 @@ class LeadCollector < Grape::API
   format :json
 
   post :lead do
-    File.open('leads.txt', 'a') { |f| f.puts JSON.pretty_generate(params) }
+
+    config = YAML.load(File.read(File.dirname(__FILE__) + '/config.yml'))
+    domain = params[:domain]
+
+    fields = config[domain][:fields]
+
+    lead_fields = fields.select { |f| params.has_key?(f) }.map { |f| {field: f, value: params[f]} }
+
+
+    Leads.post_lead("david.mazvovsky@gmail.com",domain, lead_fields, request.ip).deliver
+
     redirect params[:redirect], permanent: true
   end
 

@@ -1,3 +1,5 @@
 .idea/*
 api/.idea/*
 auth/.idea/*
+api/config.yml
+emails/emails.json

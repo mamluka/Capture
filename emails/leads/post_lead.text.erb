@@ -1,0 +1,10 @@
+You have a new lead on <%= @domain %>
+
+Here is the info
+
+<% @fields.each do |f| %>
+    <%= f[:field] %>: <%= f[:value] %>
+<% end %>
+
+Date: <%= Time.now %>
+IP: <%= @ip %>
