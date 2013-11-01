@@ -18,7 +18,7 @@ class LeadCollector < Grape::API
 
   post :lead do
 
-    config = YAML.load(File.read(File.dirname(__FILE__) + '/config.yml'))
+    config = YAML.load(File.read(File.dirname(__FILE__) + '/fields.yml'))
     domain = params[:domain]
 
     fields = config[domain][:fields]

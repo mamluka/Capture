@@ -1,0 +1,7 @@
+creditdebtsolutions.co:
+  :fields:
+    - :name
+    - :email
+    - :phone
+    - :state
+    - :debt
