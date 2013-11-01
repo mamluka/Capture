@@ -25,7 +25,7 @@ class LeadCollector < Grape::API
 
     lead_fields = fields.select { |f| params.has_key?(f) }.map { |f| {field: f, value: params[f]} }
 
-    Leads.post_lead(config[:email],domain, lead_fields, request.ip).deliver
+    Leads.post_lead(config[domain][:email], domain, lead_fields, request.ip).deliver
 
     redirect params[:redirect], permanent: true
   end
