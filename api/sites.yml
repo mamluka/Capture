@@ -7,3 +7,14 @@ creditdebtsolutions.co:
     - :debt
 
   :email: leads@pimarketingsolutions.com
+
+
+studentloan-reduction.com:
+  :fields:
+    - :name
+    - :zip
+    - :phone
+    - :loanType
+    - :loanAmount
+
+  :email: studentloan4giveness@gmail.com

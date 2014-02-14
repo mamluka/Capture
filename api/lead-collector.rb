@@ -27,7 +27,7 @@ class LeadCollector < Grape::API
 
     Leads.post_lead(config[domain][:email], domain, lead_fields, request.ip).deliver
 
-    redirect params[:redirect], permanent: true
+    'OK'
   end
 
   options :lead do
